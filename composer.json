@@ -1,0 +1,54 @@
+{
+    "name": "futuretek/yii2-rbac",
+    "description": "RBAC",
+    "keywords": [
+        "extension",
+        "role based access control",
+        "rbac",
+        "yii"
+    ],
+    "type": "yii2-extension",
+    "license": "proprietary",
+    "homepage": "http://www.futuretek.cz/",
+    "authors": [
+        {
+            "name": "Lukas Cerny",
+            "email": "lukas.cerny@futuretek.cz",
+            "homepage": "http://www.futuretek.cz",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://jira.futuretek.cz/browse/YII",
+        "wiki": "https://doc.futuretek.cz/display/YII",
+        "source": "https://git.futuretek.cz/projects/YII/repos/ext-rbac/browse"
+    },
+    "require": {
+        "php": ">=5.5.0",
+        "futuretek/yii2-shared": "^1.0.0",
+        "futuretek/yii2-yii-shared": "^1.0.0",
+        "futuretek/yii2-migrations": "^1.0.0"
+    },
+    "repositories": [
+        {
+            "url": "https://composer.futuretek.cz/repo/private/",
+            "type": "composer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "futuretek\\rbac\\": ""
+        }
+    },
+    "extra": {
+        "yii-config": {
+            "console": {
+                "controllerMap": {
+                    "rbac": {
+                        "class": "futuretek\\rbac\\RbacController"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+<?php
+return [
+    'Item Name' => 'Název položky',
+    'User' => 'Uživatel',
+    'Created At' => 'Vytvořeno',
+    'Name' => 'Název',
+    'Type' => 'Typ',
+    'Description' => 'Popis',
+    'Rule Name' => 'Název pravidla',
+    'Data' => 'Data',
+    'System' => 'Systémový',
+    'Category' => 'Kategorie',
+    'Updated At' => 'Aktualizováno',
+    'Cannot check permission on permission object.' => 'Není možné zkontrolovat oprávnění vůči oprávnění.',
+    'Cannot add permission to permission.' => 'Není možné přidat oprávnění na oprávnění.',
+    'Cannot check role on role object.' => 'Není možné zkontrolovat roli vůči roli.',
+    'Cannot add role to role.' => 'Není možné přidat roli do role.',
+    'Parent' => 'Rodič',
+    'Child' => 'Potomek',
+];
