@@ -42,6 +42,11 @@
     },
     "extra": {
         "yii-config": {
+            "components": {
+                "authManager": {
+                    "class": "yii\\rbac\\DbManager"
+                }
+            },
             "console": {
                 "controllerMap": {
                     "rbac": {
