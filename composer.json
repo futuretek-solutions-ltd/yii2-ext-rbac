@@ -48,6 +48,11 @@
                 }
             },
             "console": {
+                "components": {
+                    "authManager": {
+                        "class": "yii\\rbac\\DbManager"
+                    }
+                },
                 "controllerMap": {
                     "rbac": {
                         "class": "futuretek\\rbac\\RbacController"
