@@ -67,8 +67,8 @@ class m161111_173101_init extends FtsMigration
                 'created_at' => $this->dateTime(),
             ]);
             $this->addPrimaryKey('auth_assignment_PRIMARY', 'auth_assignment', ['item_name', 'user_id']);
-            $this->createIndex('fk_auth_item_assignment_auth_item1', 'auth_assignment', 'user_id');
-            $this->addForeignKey('fk_auth_item_assignment_auth_item1_idx', 'auth_assignment', 'user_id', 'auth_item', 'name', 'CASCADE', 'CASCADE');
+            $this->createIndex('fk_auth_item_assignment_auth_item1_idx', 'auth_assignment', 'item_name');
+            $this->addForeignKey('fk_auth_item_assignment_auth_item1', 'auth_assignment', 'item_name', 'auth_item', 'name', 'CASCADE', 'CASCADE');
         }
 
         Yii::$app->db->createCommand()->checkIntegrity(true)->execute();
