@@ -89,7 +89,7 @@ class RbacController extends Controller
 
         //Permissions
         $this->stdout("Syncing permissions...\n", Console::FG_GREEN);
-        $this->syncPermissions($deletePerms);
+        $this->syncPermissions($config['specialPermissions'], $deletePerms);
 
         //Permissions - Admin
         $this->stdout("Adding all permissions to role \"admin\"...\n", Console::FG_GREEN);
@@ -386,15 +386,17 @@ class RbacController extends Controller
     /**
      * Sync permissions (permissions not in DB will be created and obsolete permissions in DB will be deleted)
      *
+     * @param array $specialPermissions Special permissions
      * @param bool $deletePerms Delete non existing permissions
      * @throws \yii\base\InvalidParamException
      * @throws \yii\db\Exception
      */
-    protected function syncPermissions($deletePerms)
+    protected function syncPermissions($specialPermissions, $deletePerms)
     {
         $oldPermissions = array_flip(AuthItem::find()->select(['name'])->where(['type' => AuthItem::TYPE_PERMISSION])->asArray()->column());
 
         $permissions = $this->buildPermissionList();
+        $permissions = array_merge($permissions, $specialPermissions);
 
         foreach ($permissions as $item) {
             if (!$this->checkIfContain($item, ['name', 'description', 'category'])) {

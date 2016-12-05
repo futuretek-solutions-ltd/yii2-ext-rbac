@@ -22,6 +22,16 @@ return [
         .
         .
     ],
+    'specialPermissions' => [
+        [
+            'category' => 'main',
+            'action' => 'login',
+            'name' => 'MainLogin',
+            'description' => 'Allow to login the user',
+        ],
+        .
+        .
+    ],
 ];
 ```
 
