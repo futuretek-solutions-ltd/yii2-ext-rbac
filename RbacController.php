@@ -77,7 +77,7 @@ class RbacController extends Controller
         $config = $this->loadFromFile(Yii::$app->basePath . '/rbac/config.php');
 
         //Clear data
-        if (YII_DEBUG && $this->confirm('Do you want to clear all RBAC data?')) {
+        if (YII_DEBUG && $this->interactive && $this->confirm('Do you want to clear all RBAC data?')) {
             $this->clearData();
         }
 
