@@ -12,6 +12,7 @@ use RecursiveRegexIterator;
 use RegexIterator;
 use Yii;
 use yii\console\Controller;
+use yii\db\ActiveRecord;
 use yii\db\Transaction;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Console;
@@ -105,7 +106,12 @@ class RbacController extends Controller
         }
 
         //User roles
-        $this->checkAssignment('admin', 'admin', true);
+        $userId = $this->getUserId('admin');
+        if ($userId !== null) {
+            $this->checkAssignment($userId, 'admin', true);
+        } else {
+            $this->stdout("Cannot detect admin ID. Permissions won\'t be assigned.\n\n", Console::FG_YELLOW);
+        }
 
         if ($this->_transaction !== null) {
             $this->_transaction->commit();
@@ -324,7 +330,14 @@ class RbacController extends Controller
 
         //Ensure admin auth assignment
         $this->stdout("Ensuring admin is still admin...\n", Console::FG_GREEN);
-        $this->checkAssignment('admin', 'admin', true);
+
+        //User roles
+        $userId = $this->getUserId('admin');
+        if ($userId !== null) {
+            $this->checkAssignment($userId, 'admin', true);
+        } else {
+            $this->stdout("Cannot detect admin ID. Permissions won\'t be assigned.\n\n", Console::FG_YELLOW);
+        }
 
         //Delete auth item children for non-existing auth items
         $this->stdout("Removing obsolete role-permission mappings...\n", Console::FG_GREEN);
@@ -660,5 +673,24 @@ class RbacController extends Controller
         }
 
         die($this->stderr($message, Console::FG_RED, Console::UNDERLINE));
+    }
+
+    /**
+     * Get user ID by its username.
+     *
+     * @param string $username Username
+     * @return mixed|null
+     */
+    protected function getUserId($username)
+    {
+        try {
+            $id = Yii::$app->db
+                ->createCommand('SELECT id FROM user WHERE username=:u LIMIT 1', [':u' => $username])
+                ->queryScalar();
+        } catch (\Exception $e) {
+            $id = null;
+        }
+
+        return $id;
     }
 }
