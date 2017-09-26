@@ -1,4 +1,5 @@
 <?php
+
 namespace futuretek\rbac;
 
 use futuretek\rbac\models\AuthAssignment;
@@ -104,7 +105,7 @@ class RbacController extends Controller
         }
 
         //User roles
-        $this->checkAssignment('admin', 'admin');
+        $this->checkAssignment('admin', 'admin', true);
 
         if ($this->_transaction !== null) {
             $this->_transaction->commit();
@@ -323,7 +324,7 @@ class RbacController extends Controller
 
         //Ensure admin auth assignment
         $this->stdout("Ensuring admin is still admin...\n", Console::FG_GREEN);
-        $this->checkAssignment('admin', 'admin');
+        $this->checkAssignment('admin', 'admin', true);
 
         //Delete auth item children for non-existing auth items
         $this->stdout("Removing obsolete role-permission mappings...\n", Console::FG_GREEN);
