@@ -12,7 +12,6 @@ use RecursiveRegexIterator;
 use RegexIterator;
 use Yii;
 use yii\console\Controller;
-use yii\db\ActiveRecord;
 use yii\db\Transaction;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Console;
@@ -44,6 +43,13 @@ class RbacController extends Controller
      * @var Transaction
      */
     private $_transaction;
+
+    public function afterAction($action, $result)
+    {
+        AuthItem::clearCache();
+
+        return parent::afterAction($action, $result);
+    }
 
     /**
      * Usage help

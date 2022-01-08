@@ -6,6 +6,7 @@ use futuretek\yii\shared\DbModel;
 use futuretek\yii\shared\FtsException;
 use futuretek\yii\shared\ModelSaveException;
 use Yii;
+use yii\rbac\DbManager;
 use yii\rbac\Role;
 
 /**
@@ -245,6 +246,14 @@ class AuthItem extends DbModel
             if (!$obj->save()) {
                 throw new ModelSaveException($obj);
             }
+        }
+    }
+
+    public static function clearCache(): void
+    {
+        $authManager = Yii::$app->getAuthManager();
+        if ($authManager instanceof DbManager) {
+            $authManager->invalidateCache();
         }
     }
 }

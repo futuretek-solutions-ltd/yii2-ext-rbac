@@ -33,13 +33,15 @@
         "yii-config": {
             "components": {
                 "authManager": {
-                    "class": "yii\\rbac\\DbManager"
+                    "class": "yii\\rbac\\DbManager",
+                    "cache": "cache"
                 }
             },
             "console": {
                 "components": {
                     "authManager": {
-                        "class": "yii\\rbac\\DbManager"
+                        "class": "yii\\rbac\\DbManager",
+                        "cache": "cache"
                     }
                 },
                 "controllerMap": {

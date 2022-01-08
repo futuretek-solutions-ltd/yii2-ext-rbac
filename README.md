@@ -1,5 +1,9 @@
 # RBAC
 
+## Requirements
+
+* For RBAC to function correctly Yii cache component must be configured.
+
 ## Configuration
 
 Place config into @app/rbac/config.php
@@ -57,7 +61,7 @@ In other environments only permission update is possible.
 
 ### Permissions Export
 
-Permissions should be exported and commited to versioning system when releasing the application. 
+Permissions should be exported and committed to versioning system when releasing the application. 
 
 Export is done using the command:
 ```
